@@ -1,0 +1,41 @@
+type User {
+    email: String!
+    servers: [Server!]!
+}
+
+type Server {
+    id: ID!
+    name: String
+}
+
+type SignPayload {
+    user: User
+    token: String
+    error: String
+}
+
+input SignupInput {
+    email: String!
+    mobile: String!
+    password: String!
+    passwordConfirmation: String!
+}
+
+input SigninInput {
+    login: String!
+    password: String!
+}
+
+type Query {
+    currentUser: User
+}
+
+type Mutation {
+    signUp(input: SignupInput!): SignPayload!
+    signIn(input: SigninInput!): SignPayload!
+}
+
+schema {
+    query: Query
+    mutation: Mutation
+}
